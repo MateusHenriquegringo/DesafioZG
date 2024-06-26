@@ -23,25 +23,26 @@ public class EstruturaPrimeiraParte {
 	);
 
 
-	public Queue<String> buildPrimeiraParte() {
+	public Stack<String> buildPrimeiraParte() {
 
-		Queue<String> primeiraParte = new ArrayDeque<>();
-		primeiraParte.add(refrao);
+		Stack<String> primeiraParte = new Stack<>();
 
-		for (List<String> animais : listaAnimais) {
-			primeiraParte.add(
-					primeiroVerso.build(animais)
+		primeiraParte.push(fimPrimeiraParte);
+
+		for (int i = 0; i < 3; i++) {
+			primeiraParte.push(refrao);
+		}
+
+		primeiraParte.push("Por isso...!\n");
+		primeiraParte.push(ponte);
+
+		for (int i = listaAnimais.size() - 1; i >= 0; i--) {
+			primeiraParte.push(
+					primeiroVerso.build(listaAnimais.get(i))
 			);
 		}
 
-		primeiraParte.add(ponte);
-		primeiraParte.add("Por isso...!\n");
-
-		for (int i = 0; i < 3; i++) {
-			primeiraParte.add(refrao);
-		}
-
-		primeiraParte.add(fimPrimeiraParte);
+		primeiraParte.push(refrao);
 
 		return primeiraParte;
 	}
@@ -51,11 +52,10 @@ public class EstruturaPrimeiraParte {
 
 		StringBuilder primeiraParte = new StringBuilder();
 
-		Queue<String> parteUm = buildPrimeiraParte();
+		Stack<String> parteUm = buildPrimeiraParte();
 
 		while (!parteUm.isEmpty()) {
-			primeiraParte.append(parteUm.peek());
-			parteUm.remove();
+			primeiraParte.append(parteUm.pop()+"\n");
 		}
 		return primeiraParte.toString();
 	}

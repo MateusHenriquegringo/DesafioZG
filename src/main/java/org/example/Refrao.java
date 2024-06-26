@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class Refrao {
 
-	private static HashMap<Integer, String> frasesRefrao = new HashMap<>();
+	private static final HashMap<Integer, String> frasesRefrao = new HashMap<>();
 
 	public static String build() {
 
